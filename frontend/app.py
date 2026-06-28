@@ -249,6 +249,9 @@ def page_dashboard():
                 if st.button("Open plant", key=f"open_{plant['id']}", use_container_width=True):
                     st.session_state["active_plant"] = plant["id"]
                     st.rerun()
+                if st.button("Delete", key=f"del_{plant['id']}", use_container_width=True, type="secondary"):
+                    requests.delete(f"{API}/plants/{plant['id']}", headers=auth_headers())
+                    st.rerun()
 
 
 def page_plant(plant_id: int):
