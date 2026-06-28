@@ -7,7 +7,8 @@ import requests
 import streamlit as st
 
 import os
-API = os.environ.get("API_URL", "http://localhost:8000")
+_api = os.environ.get("API_URL", "http://localhost:8000")
+API = _api if _api.startswith("http") else f"https://{_api}"
 
 st.set_page_config(page_title="Plant Doctor", page_icon="🌿", layout="wide")
 
