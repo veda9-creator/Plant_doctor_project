@@ -145,12 +145,27 @@ def _save_photo(plant_id: int, file, note: str = "") -> dict | None:
 # Pages
 # ---------------------------------------------------------------------------
 
+DEMO_EMAIL = "demo@plantdoctor.com"
+DEMO_PASSWORD = "demo1234"
+
+def _demo_login():
+    api_post("/auth/register", json={"email": DEMO_EMAIL, "password": DEMO_PASSWORD})
+    resp = api_post("/auth/login", data={"username": DEMO_EMAIL, "password": DEMO_PASSWORD})
+    if resp.ok:
+        st.session_state["token"] = resp.json()["access_token"]
+        st.rerun()
+
 def page_login():
     set_login_background()
     col = st.columns([1, 2, 1])[1]
     with col:
         st.title("🌿 Plant Doctor")
         st.caption("Upload a photo. Get a diagnosis. Track recovery week over week.")
+        st.divider()
+
+        if st.button("🚀 Try Demo — no account needed", use_container_width=True, type="primary"):
+            _demo_login()
+
         st.divider()
 
         tab_login, tab_register = st.tabs(["Log in", "Create account"])
