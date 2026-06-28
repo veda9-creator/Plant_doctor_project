@@ -156,16 +156,12 @@ def _demo_login():
         st.rerun()
 
 def page_login():
+    _demo_login()
     set_login_background()
     col = st.columns([1, 2, 1])[1]
     with col:
         st.title("🌿 Plant Doctor")
         st.caption("Upload a photo. Get a diagnosis. Track recovery week over week.")
-        st.divider()
-
-        if st.button("🚀 Try Demo — no account needed", use_container_width=True, type="primary"):
-            _demo_login()
-
         st.divider()
 
         tab_login, tab_register = st.tabs(["Log in", "Create account"])
