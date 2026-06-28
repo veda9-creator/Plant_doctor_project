@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from sqlalchemy import (
     create_engine, Column, Integer, String, Text,
@@ -5,7 +6,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import DeclarativeBase, relationship, sessionmaker
 
-DATABASE_URL = "sqlite:///./plant_doctor.db"
+_data_dir = os.environ.get("DATA_DIR", ".")
+DATABASE_URL = os.environ.get("DATABASE_URL", f"sqlite:///{_data_dir}/plant_doctor.db")
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(bind=engine)
 

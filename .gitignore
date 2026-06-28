@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+
+# Virtual environment
+venv/
+.env
+.env.*
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Uploaded photos
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db

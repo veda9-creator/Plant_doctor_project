@@ -6,7 +6,8 @@ from pathlib import Path
 import requests
 import streamlit as st
 
-API = "http://localhost:8000"
+import os
+API = os.environ.get("API_URL", "http://localhost:8000")
 
 st.set_page_config(page_title="Plant Doctor", page_icon="🌿", layout="wide")
 

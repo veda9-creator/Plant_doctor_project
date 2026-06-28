@@ -39,8 +39,8 @@ else:  # Running as `python main.py` directly from the backend folder
 
 app = FastAPI(title="Plant Doctor API")
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-UPLOADS_DIR = BASE_DIR / "uploads"
+_data_dir = os.environ.get("DATA_DIR", str(Path(__file__).resolve().parent.parent))
+UPLOADS_DIR = Path(_data_dir) / "uploads"
 UPLOADS_DIR.mkdir(exist_ok=True)
 
 app.mount("/uploads", StaticFiles(directory=str(UPLOADS_DIR)), name="uploads")

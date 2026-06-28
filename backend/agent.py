@@ -197,7 +197,9 @@ def prescribe(state: Plant) -> dict:
     }
 
 
-conn = sqlite3.connect("./plant_doctor_checkpoints.db", check_same_thread=False)
+import os as _os
+_data_dir = _os.environ.get("DATA_DIR", ".")
+conn = sqlite3.connect(f"{_data_dir}/plant_doctor_checkpoints.db", check_same_thread=False)
 checkpointer = SqliteSaver(conn)
 
 builder = StateGraph(Plant)
